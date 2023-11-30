@@ -1,0 +1,19 @@
+.square{
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+}
+.square:hover{
+    cursor: pointer;
+    background: rgb(102, 250, 250);
+
+}
+.together{
+    display: flex;
+    flex-direction: row;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

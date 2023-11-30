@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="wrapper" id = "wrapper"> 
+        <div class="gamefield">
+            <div class="row1 row">
+                <div class="d cell"  dx = "0" dy = "0"></div>
+                <div class="d cell"  dx = "1" dy = "0"></div>
+                <div class="d cell"  dx = "2" dy = "0"></div>
+            </div>
+            <div class="row2 row">
+                <div class="d cell"  dx = "0" dy = "1"></div>
+                <div class="d cell"  dx = "1" dy = "1"></div>
+                <div class="d cell"  dx = "2" dy = "1"></div>
+
+            </div>
+            <div class="row3 row">
+                <div class="d cell"  dx = "0" dy = "2"></div>
+                <div class="d cell"  dx = "1" dy = "2"></div>
+                <div class="d cell"  dx = "2" dy = "2"></div>
+
+            </div>
+        </div>
+        
+    </div>
+    <div class="move">
+        Зараз ходить:
+        <div class="d" id ="move_div">X</div>
+    </div>
+    <p id="result"></p>
+    <script>
+          let matrix = [
+            [0,0,0],
+            [0,0,0],
+            [0,0,0]
+] 
+        var a = 0;
+        var read_number = 0;
+        let check_draw = 1;
+        let move = "X";
+        let result = document.getElementById("result");
+        let wrapper = document.getElementById("wrapper");
+        wrapper.addEventListener("click",w);
+        function w(event){
+
+            element = event.target;
+            console.log(element);
+            let x = parseInt(element.getAttribute("dx"));
+            let y = parseInt(element.getAttribute("dy"));
+            matrix[y][x] = (move=="X" ? 1 : 2);
+
+            console.log(matrix);
+            element.classList.add('highlight');
+            element.innerHTML = move;
+
+            if (move == "X"){ move = "O"}
+            else if (move == "O"){ move = "X"}
+            move_div = document.getElementById("move_div");
+            move_div.innerHTML = move;
+
+            check_matrix(matrix);
+        }
+        function check_matrix(m){
+            console.log(m[0][0])
+            console.log(m[1][1])
+            console.log(m[2][2])
+                console.log(check_draw + " 12")
+                if ((m[0][0] == 1) && (m[1][1] == 1) && (m[2][2] == 1)){
+                    a = "X - wins"
+                    result.innerHTML = a;
+                }else if((m[0][0] == 1) && (m[0][1] == 1) && (m[0][2] == 1)){
+                    a = "X - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][2] == 1) && (m[1][2] == 1) && (m[2][2] == 1)){
+                    a = "X - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[2][0] == 1) && (m[2][1] == 1) && (m[2][2] == 1)){
+                    a = "X - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[1][0] == 1) && (m[1][1] == 1) && (m[1][2] == 1)){
+                    a = "X - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][1] == 1) && (m[1][1] == 1) && (m[2][1] == 1)){
+                    a = "X - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][0] == 1) && (m[1][0] == 1) && (m[2][0] == 1)){
+                    a = "X - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][2] == 1) && (m[1][1] == 1) && (m[2][0] == 1)){
+                    a = "X - wins"
+                    result.innerHTML = a;
+                }
+
+                else if((m[0][0] == 2) && (m[0][1] == 2) && (m[0][2] == 2)){
+                    a = "O - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][0] == 2) && (m[1][1] == 2) && (m[2][2] == 2)){
+                    a = "O - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][2] == 2) && (m[1][2] == 2) && (m[2][2] == 2)){
+                    a = "O - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[2][0] == 2) && (m[2][1] == 2) && (m[2][2] == 2)){
+                    a = "O - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[1][0] == 2) && (m[1][1] == 2) && (m[1][2] == 2)){
+                    a = "O - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][1] == 2) && (m[1][1] == 2) && (m[2][1] == 2)){
+                    a = "O - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][0] == 2) && (m[1][0] == 2) && (m[2][0] == 2)){
+                    a = "O - wins"
+                    result.innerHTML = a;
+                }
+                else if((m[0][2] == 2) && (m[1][1] == 2) && (m[2][0] == 2)){
+                    a = "O - wins"
+                    result.innerHTML = a;
+                }
+                if (a == 0){
+                    for(let i = 0; i<matrix.length; i+=1){
+                        for(let j = 0; j<matrix.length; j+=1){
+                            console.log(matrix[i][j])
+                            console.log(i + " 21")
+                            if (matrix[i][j] != 0){
+                                read_number += 1;
+                            }
+                            if (matrix[i][j] == 0){
+                                read_number -= 1;
+                            }
+                            if (read_number == 9){
+                                result.innerHTML = "нічія";
+                            }
+                        }
+                    }
+                }
+            }
+
+    </script>
+</body>
+</html>
